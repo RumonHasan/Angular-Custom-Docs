@@ -14,13 +14,23 @@ import SearchIcon from '@mui/icons-material/Search';
 import useDocStore from '../../src/store/useDocstore.js';
 import { Drawer } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-
 const Sidenav = () => {
   const [searchValue, setSearchValue] = useState('');
   // drawer control states
   const toggleDrawerControl = useDocStore((state) => state.toggleDrawerControl);
   const drawerControl = useDocStore((state) => state.drawerControl);
-  const drawerAnchor = 'left';
+  // styles for drawer
+  const drawerStyles = makeStyles({
+    drawer: {
+      '& .MuiPaper-root': {
+        background: 'blue',
+      },
+    },
+  });
+  const drawerPosition = {
+    left: 'left',
+    right: 'right',
+  };
   // basic search states
   const handleSearch = (e) => {
     setSearchValue(e.target.value);
@@ -29,7 +39,8 @@ const Sidenav = () => {
   return (
     <React.Fragment>
       <Drawer
-        anchor={drawerAnchor}
+        className={drawerStyles.drawer}
+        anchor={drawerPosition.left}
         open={drawerControl}
         onClose={toggleDrawerControl}
       >

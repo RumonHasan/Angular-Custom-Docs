@@ -11,6 +11,7 @@ const docStore = (set) => ({
   },
 });
 
+// basic doc store
 export const useDocStore = create(
   devtools(
     persist(docStore, {
